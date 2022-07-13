@@ -7,7 +7,8 @@ import Text from './Text';
 
 const styles = StyleSheet.create({
   errorText: {
-    marginTop: 5
+    marginTop: 5,
+    color: theme.colors.error
   },
   input: {
     borderColor: theme.colors.textSecondary,
