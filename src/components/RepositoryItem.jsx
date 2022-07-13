@@ -76,7 +76,7 @@ const RepositoryItem = ({ item }) => {
 
         <View style={styles.centerflex}>
           <Text style={styles.name}>{item.fullName}</Text>
-          <Text style={styles.descriptionr}>{item.description}</Text>
+          <Text style={styles.description}>{item.description}</Text>
           <Text style={styles.language}>{item.language}</Text>
         </View>
       </View>
