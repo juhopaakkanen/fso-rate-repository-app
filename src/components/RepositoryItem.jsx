@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   bottomflex: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    marginLeft: 40,
     marginTop: 10,
     marginBottom: 10
   },
@@ -43,15 +43,13 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   stat: {
-    marginHorizontal: 5,
+    marginHorizontal: 8,
     fontWeight: theme.fontWeights.bold,
-    justifyContent: 'center',
     textAlign: 'center',
     marginRight: 25
   },
   statName: {
-    marginHorizontal: 5,
-    justifyContent: 'center',
+    marginHorizontal: 8,
     textAlign: 'center',
     marginRight: 25,
     color: theme.colors.textSecondary
