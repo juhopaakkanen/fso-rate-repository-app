@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const formatCount = (n) => {
+export const formatCount = (n) => {
   switch (true) {
     case n > 1000:
       return (n / 1000).toFixed(1) + 'k';
@@ -67,7 +67,7 @@ const formatCount = (n) => {
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={styles.item}>
+    <View testID="repositoryItem" style={styles.item}>
       <View style={styles.topflex}>
         <Image
           source={{ uri: item.ownerAvatarUrl }}
