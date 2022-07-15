@@ -1,4 +1,5 @@
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Pressable, Linking } from 'react-native';
+
 import theme from '../../theme';
 import Text from '../Text';
 
@@ -53,6 +54,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginRight: 25,
     color: theme.colors.textSecondary
+  },
+  button: {
+    textAlign: 'center',
+    backgroundColor: theme.colors.primary,
+    color: theme.colors.white,
+    marginTop: 10,
+    marginLeft: 10,
+    maxWidth: 335,
+    padding: 8,
+    borderRadius: 5
   }
 });
 
@@ -65,7 +76,7 @@ export const formatCount = (n) => {
   }
 };
 
-const RepositoryItem = ({ item }) => {
+const RepositoryItem = ({ item, singleView = false }) => {
   return (
     <View testID="repositoryItem" style={styles.item}>
       <View style={styles.topflex}>
@@ -99,6 +110,11 @@ const RepositoryItem = ({ item }) => {
           <Text style={styles.statName}>Rating</Text>
         </View>
       </View>
+      {singleView && (
+        <Pressable onPress={() => Linking.openURL(item.url)}>
+          <Text style={styles.button}>Open in GitHub</Text>
+        </Pressable>
+      )}
     </View>
   );
 };
