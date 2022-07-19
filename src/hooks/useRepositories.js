@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 
 import { GET_REPOSITORIES } from '../graphql/queries';
 
-const useRepositories = (order) => {
+const parseOrder = (order) => {
   let sort, dir;
   switch (true) {
     case order === 'Latest':
@@ -20,10 +20,18 @@ const useRepositories = (order) => {
     default:
       throw new Error('invalid order');
   }
+  return { sort, dir };
+};
 
+const useRepositories = (order, searchKeyword) => {
+  const { sort, dir } = parseOrder(order);
   const { data } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: 'cache-and-network',
-    variables: { orderBy: sort, orderDirection: dir }
+    variables: {
+      orderBy: sort,
+      orderDirection: dir,
+      searchKeyword: searchKeyword
+    }
   });
 
   return {
