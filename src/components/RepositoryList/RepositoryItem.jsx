@@ -4,17 +4,17 @@ import theme from '../../theme';
 import Text from '../Text';
 
 const styles = StyleSheet.create({
-  item: {
+  container: {
     backgroundColor: theme.colors.white
   },
-  topflex: {
+  topContainer: {
     flexDirection: 'row'
   },
-  centerflex: {
+  centerContainer: {
     marginTop: 5,
     marginRight: 90
   },
-  bottomflex: {
+  bottomContainer: {
     flexDirection: 'row',
     marginLeft: 40,
     marginTop: 10,
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     maxWidth: 335,
     padding: 8,
-    borderRadius: 5
+    borderRadius: 5,
+    marginBottom: 15
   }
 });
 
@@ -78,21 +79,21 @@ export const formatCount = (n) => {
 
 const RepositoryItem = ({ item, singleView = false }) => {
   return (
-    <View testID="repositoryItem" style={styles.item}>
-      <View style={styles.topflex}>
+    <View testID="repositoryItem" style={styles.container}>
+      <View style={styles.topContainer}>
         <Image
           source={{ uri: item.ownerAvatarUrl }}
           style={styles.image}
         ></Image>
 
-        <View style={styles.centerflex}>
+        <View style={styles.centerContainer}>
           <Text style={styles.name}>{item.fullName}</Text>
           <Text style={styles.description}>{item.description}</Text>
           <Text style={styles.language}>{item.language}</Text>
         </View>
       </View>
 
-      <View style={styles.bottomflex}>
+      <View style={styles.bottomContainer}>
         <View>
           <Text style={styles.stat}>{formatCount(item.stargazersCount)}</Text>
           <Text style={styles.statName}>Stars</Text>
