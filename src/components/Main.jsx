@@ -6,7 +6,7 @@ import RepositoryList from './RepositoryList';
 import AppBar from './AppBar';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import SingleRepository from './RepositoryList/SingleRepository';
+import SingleRepository from './SingleRepository';
 import AddReview from './AddReview';
 import UserReviews from './UserReviews';
 

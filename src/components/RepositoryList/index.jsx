@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 import useRepositories from '../../hooks/useRepositories';
-import RepositoryItem from './RepositoryItem';
+import RepositoryItem from '../RepositoryItem';
 import RepositoryListHeader from './RepositoryListHeader';
 
 export class RepositoryListContainer extends React.Component {

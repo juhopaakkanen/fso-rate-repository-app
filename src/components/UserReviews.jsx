@@ -1,7 +1,7 @@
 import { FlatList, Alert } from 'react-native';
 import { useNavigate } from 'react-router-native';
 
-import ReviewItem from './RepositoryList/ReviewItem';
+import ReviewItem from './ReviewItem';
 import useSignedUser from '../hooks/useSignedUser';
 import useDeleteReview from '../hooks/useDeleteReview';
 

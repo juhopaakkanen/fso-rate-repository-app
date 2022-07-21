@@ -3,8 +3,8 @@ import { useParams } from 'react-router-native';
 
 import RepositoryItem from './RepositoryItem';
 import ReviewItem from './ReviewItem';
-import useRepository from '../../hooks/useRepository';
-import useReviews from '../../hooks/useReviews';
+import useRepository from '../hooks/useRepository';
+import useReviews from '../hooks/useReviews';
 
 const SingleRepository = () => {
   const { id } = useParams();
