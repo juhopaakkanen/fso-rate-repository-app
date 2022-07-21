@@ -1,10 +1,8 @@
-import { View, StyleSheet, Pressable, Alert } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import { format } from 'date-fns';
-import { useNavigate } from 'react-router-native';
 
 import theme from '../../theme';
 import Text from '../Text';
-import useDeleteReview from '../../hooks/useDeleteReview';
 
 const styles = StyleSheet.create({
   container: {
@@ -70,27 +68,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const ReviewItem = ({ review, userReviews = false, refetch = false }) => {
-  const navigate = useNavigate();
-  const [deleteReview] = useDeleteReview();
-
-  const onConfirmedDelete = async () => {
-    await deleteReview(review.id);
-    refetch();
-  };
-
-  const onDeletePress = async () => {
-    Alert.alert('Delete review', 'Are you sure you want to delete review', [
-      {
-        text: 'CANCEL',
-        style: 'cancel'
-      },
-      { text: 'DELETE', onPress: onConfirmedDelete }
-    ]);
-  };
-
+const ReviewItem = ({
+  review,
+  onRepositoryPress = false,
+  onDeletePress = false
+}) => {
   let title;
-  userReviews
+  onRepositoryPress && onDeletePress
     ? (title = review.repository.fullName)
     : (title = review.user.username);
 
@@ -106,12 +90,14 @@ const ReviewItem = ({ review, userReviews = false, refetch = false }) => {
           <Text>{review.text}</Text>
         </View>
       </View>
-      {userReviews && (
+      {onRepositoryPress && onDeletePress && (
         <View style={styles.bottomContainer}>
-          <Pressable onPress={() => navigate(`/${review.repository.id}`)}>
+          <Pressable
+            onPress={() => onRepositoryPress(`/${review.repository.id}`)}
+          >
             <Text style={styles.buttonBlue}>View repository</Text>
           </Pressable>
-          <Pressable onPress={onDeletePress}>
+          <Pressable onPress={() => onDeletePress(review.id)}>
             <Text style={styles.buttonRed}>Delete review</Text>
           </Pressable>
         </View>
