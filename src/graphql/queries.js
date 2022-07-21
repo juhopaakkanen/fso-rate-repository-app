@@ -61,8 +61,8 @@ export const GET_REVIEWS = gql`
   ${PAGE_INFO}
 `;
 
-export const SIGNED_USER = gql`
-  query signedUser($includeReviews: Boolean = false) {
+export const GET_SIGNED_USER = gql`
+  query getSignedUser($includeReviews: Boolean = false) {
     me {
       id
       username

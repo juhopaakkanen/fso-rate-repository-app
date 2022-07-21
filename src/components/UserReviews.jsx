@@ -1,12 +1,18 @@
 import { FlatList } from 'react-native';
 
 import ReviewItem from './RepositoryList/ReviewItem';
-import useUserReviews from '../hooks/useUserReviews';
+import useSignedUser from '../hooks/useSignedUser';
 
 const UserReviews = () => {
-  const { reviews } = useUserReviews();
+  const { user, loading } = useSignedUser(true);
 
-  const reviewNodes = reviews ? reviews.edges.map((edge) => edge.node) : [];
+  if (loading) {
+    return null;
+  }
+
+  const reviewNodes = user.reviews
+    ? user.reviews.edges.map((edge) => edge.node)
+    : [];
 
   return (
     <FlatList

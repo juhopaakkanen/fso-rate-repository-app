@@ -1,15 +1,16 @@
 import { useQuery } from '@apollo/client';
 
-import { SIGNED_USER } from '../graphql/queries';
+import { GET_SIGNED_USER } from '../graphql/queries';
 
 const useSignedUser = (includeReviews = false) => {
-  const { data } = useQuery(SIGNED_USER, {
+  const { data, loading } = useQuery(GET_SIGNED_USER, {
     fetchPolicy: 'cache-and-network',
     variables: { includeReviews }
   });
 
   return {
-    user: data?.me
+    user: data?.me,
+    loading
   };
 };
 
