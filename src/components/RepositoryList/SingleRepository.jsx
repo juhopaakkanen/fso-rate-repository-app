@@ -9,13 +9,17 @@ import useReviews from '../../hooks/useReviews';
 const SingleRepository = () => {
   const { id } = useParams();
   const { repository } = useRepository(id);
-  const { reviews } = useReviews(id);
+  const { reviews, fetchMore } = useReviews(id);
 
   if (!repository) {
     return null;
   }
 
   const reviewNodes = reviews ? reviews.edges.map((edge) => edge.node) : [];
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   return (
     <FlatList
@@ -25,6 +29,8 @@ const SingleRepository = () => {
       ListHeaderComponent={() => (
         <RepositoryItem item={repository} singleView={true} />
       )}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   );
 };

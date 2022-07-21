@@ -25,17 +25,37 @@ const parseOrder = (order) => {
 
 const useRepositories = (order, searchKeyword) => {
   const { sort, dir } = parseOrder(order);
-  const { data } = useQuery(GET_REPOSITORIES, {
+  const variables = {
+    first: 8,
+    orderBy: sort,
+    orderDirection: dir,
+    searchKeyword: searchKeyword
+  };
+
+  const { data, loading, fetchMore, ...result } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: 'cache-and-network',
-    variables: {
-      orderBy: sort,
-      orderDirection: dir,
-      searchKeyword: searchKeyword
-    }
+    variables
   });
 
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
+
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+        ...variables
+      }
+    });
+  };
+
   return {
-    repositories: data?.repositories
+    repositories: data?.repositories,
+    fetchMore: handleFetchMore,
+    ...result
   };
 };
 
