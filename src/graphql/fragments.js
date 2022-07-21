@@ -22,6 +22,7 @@ export const REVIEW_DETAILS = gql`
     rating
     createdAt
     repository {
+      id
       fullName
     }
     user {
