@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10
   },
-  reviewer: {
+  title: {
     fontWeight: theme.fontWeights.bold,
     fontSize: theme.fontSizes.subheading,
     marginTop: 5
@@ -38,12 +38,17 @@ const styles = StyleSheet.create({
   }
 });
 
-const ReviewItem = ({ review }) => {
+const ReviewItem = ({ review, userReviews = false }) => {
+  let title;
+  userReviews
+    ? (title = review.repository.fullName)
+    : (title = review.user.username);
+
   return (
     <View style={styles.topContainer}>
       <Text style={styles.reviewRating}>{review.rating}</Text>
       <View style={styles.rightContainer}>
-        <Text style={styles.reviewer}>{review.user.username}</Text>
+        <Text style={styles.title}>{title}</Text>
         <Text style={styles.date}>
           {format(new Date(review.createdAt), 'dd.MM.yyyy')}
         </Text>

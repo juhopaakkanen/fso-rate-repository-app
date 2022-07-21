@@ -72,10 +72,33 @@ export const GET_REVIEWS = gql`
 `;
 
 export const SIGNED_USER = gql`
-  query {
+  query signedUser($includeReviews: Boolean = false) {
     me {
       id
       username
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            id
+            repository {
+              fullName
+            }
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+        }
+      }
     }
   }
 `;

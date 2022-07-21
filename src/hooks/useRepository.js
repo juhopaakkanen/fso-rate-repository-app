@@ -4,7 +4,7 @@ import { GET_REPOSITORY } from '../graphql/queries';
 
 const useRepository = (id) => {
   const { data } = useQuery(GET_REPOSITORY, {
-    variables: { id: id },
+    variables: { id },
     fetchPolicy: 'cache-and-network'
   });
 
