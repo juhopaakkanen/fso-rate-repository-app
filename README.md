@@ -1,2 +1,4 @@
-# rate-repository-app
-This repository is used for the React Native module of the Full stack open course. 
+# Full stack open - React Native
+
+This module is about creating mobile app for listing and rating Github repositories.
+
